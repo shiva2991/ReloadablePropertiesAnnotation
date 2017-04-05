@@ -3,10 +3,6 @@ package com.morgan.design.properties.testBeans;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.joda.time.Period;
 import org.springframework.stereotype.Component;
 
 import com.morgan.design.properties.ReloadableProperty;
@@ -57,20 +53,6 @@ public class AutowiredPropertyBean {
 
 	@ReloadableProperty("dynamicProperty.bigDecimalValue")
 	private BigDecimal bigDecimalProperty;
-
-	// joda
-
-	@ReloadableProperty("dynamicProperty.periodValue")
-	private Period periodProperty;
-
-	@ReloadableProperty("dynamicProperty.localDateTimeValue")
-	private LocalDateTime localDateTimeProperty;
-
-	@ReloadableProperty("dynamicProperty.localDateValue")
-	private LocalDate localDateProperty;
-
-	@ReloadableProperty("dynamicProperty.localTimeValue")
-	private LocalTime localTimeProperty;
 
 	// recursive substitution
 
@@ -129,22 +111,6 @@ public class AutowiredPropertyBean {
 
 	public BigInteger getBigIntegerProperty() {
 		return this.bigIntegerProperty;
-	}
-
-	public Period getPeriodProperty() {
-		return this.periodProperty;
-	}
-
-	public LocalDate getLocalDateProperty() {
-		return this.localDateProperty;
-	}
-
-	public LocalTime getLocalTimeProperty() {
-		return this.localTimeProperty;
-	}
-
-	public LocalDateTime getLocalDateTimeProperty() {
-		return this.localDateTimeProperty;
 	}
 
 	public String getSubstitutedProperty() {

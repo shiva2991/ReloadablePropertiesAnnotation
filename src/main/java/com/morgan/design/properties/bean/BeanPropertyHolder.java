@@ -1,8 +1,7 @@
 package com.morgan.design.properties.bean;
 
 import java.lang.reflect.Field;
-
-import com.google.common.base.Objects;
+import java.util.Arrays;
 
 public class BeanPropertyHolder {
 
@@ -24,24 +23,22 @@ public class BeanPropertyHolder {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this.bean, this.field);
+		return Arrays.hashCode(new Object[]{this.bean, this.field});
 	}
 
 	@Override
 	public boolean equals(Object object) {
 		if (object instanceof BeanPropertyHolder) {
 			BeanPropertyHolder that = (BeanPropertyHolder) object;
-			return Objects.equal(this.bean, that.bean) && Objects.equal(this.field, that.field);
+			return (this.bean == that.getBean() || this.bean.equals(that.getBean()))
+					&& (this.field == that.getField() || this.field.equals(that.getField()));
 		}
 		return false;
 	}
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
-			.add("bean", this.bean)
-			.add("field", this.field)
-			.toString();
+		return "BeanPropertyHolder [bean=" + bean + ", field=" + field + "]";
 	}
 
 }

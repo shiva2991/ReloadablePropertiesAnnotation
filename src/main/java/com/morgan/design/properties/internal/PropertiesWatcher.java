@@ -188,9 +188,7 @@ public class PropertiesWatcher implements Runnable {
 		}
 
 		private boolean pathMatchesResource(final Path target, final Resource resource) {
-			return target.getFileName()
-				.toString()
-				.equals(resource.getFilename());
+			return Paths.get(resource.getFilename()).equals(target);
 		}
 	}
 

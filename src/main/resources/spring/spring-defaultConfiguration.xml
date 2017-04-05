@@ -10,7 +10,34 @@
 	<bean
 		class="com.morgan.design.properties.conversion.DefaultPropertyConversionService"
 		id="conversionService" />
+		
+	<!-- register property editor for date and other types -->
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="propertyEditorRegistrars">
+			<array>
+				<ref bean="customEditorRegistrar"/>
+			</array>
+		</property>
+	</bean>
+	
+	<bean id="customEditorRegistrar" class="com.morgan.spring.config.CustomEditorsRegistrar">
+		<constructor-arg>
+			<map>
+				<entry key="java.util.Date" value-ref="dateEditor"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="dateEditor"
+   		class="org.springframework.beans.propertyeditors.CustomDateEditor">
 
+	<constructor-arg>
+		<bean class="java.text.SimpleDateFormat">
+			<constructor-arg value="dd-MM-yyyy" />
+		</bean>
+	</constructor-arg>
+	<constructor-arg value="true" />
+	</bean>
+	
 	<bean
 		class="com.morgan.design.properties.event.GuavaPropertyChangedEventNotifier"
 		autowire="constructor" id="eventNotifier">

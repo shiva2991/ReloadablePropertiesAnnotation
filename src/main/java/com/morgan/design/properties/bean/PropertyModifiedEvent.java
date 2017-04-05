@@ -1,7 +1,5 @@
 package com.morgan.design.properties.bean;
 
-import com.google.common.base.Objects;
-
 public class PropertyModifiedEvent {
 
 	private final String propertyName;
@@ -25,28 +23,47 @@ public class PropertyModifiedEvent {
 	public Object getNewValue() {
 		return this.newValue;
 	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this.propertyName, this.oldValue, this.newValue);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((newValue == null) ? 0 : newValue.hashCode());
+		result = prime * result + ((oldValue == null) ? 0 : oldValue.hashCode());
+		result = prime * result + ((propertyName == null) ? 0 : propertyName.hashCode());
+		return result;
 	}
 
 	@Override
-	public boolean equals(final Object object) {
-		if (object instanceof PropertyModifiedEvent) {
-			final PropertyModifiedEvent that = (PropertyModifiedEvent) object;
-			return Objects.equal(this.propertyName, that.propertyName) && Objects.equal(this.oldValue, that.oldValue)
-				&& Objects.equal(this.newValue, that.newValue);
-		}
-		return false;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PropertyModifiedEvent other = (PropertyModifiedEvent) obj;
+		if (newValue == null) {
+			if (other.newValue != null)
+				return false;
+		} else if (!newValue.equals(other.newValue))
+			return false;
+		if (oldValue == null) {
+			if (other.oldValue != null)
+				return false;
+		} else if (!oldValue.equals(other.oldValue))
+			return false;
+		if (propertyName == null) {
+			if (other.propertyName != null)
+				return false;
+		} else if (!propertyName.equals(other.propertyName))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
-			.add("propertyName", this.propertyName)
-			.add("oldValue", this.oldValue)
-			.add("newValue", this.newValue)
-			.toString();
+		return "PropertyModifiedEvent [propertyName=" + propertyName + ", oldValue=" + oldValue + ", newValue="
+				+ newValue + "]";
 	}
-
 }

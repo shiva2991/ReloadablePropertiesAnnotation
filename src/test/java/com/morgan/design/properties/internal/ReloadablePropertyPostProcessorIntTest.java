@@ -6,10 +6,6 @@ import static org.junit.Assert.assertThat;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
-import org.joda.time.Period;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -77,26 +73,6 @@ public class ReloadablePropertyPostProcessorIntTest extends AbstractJUnit4Spring
 		assertThat("Should have 2 decimal places", this.bean.getBigDecimalProperty()
 			.scale(), is(2));
 		assertThat(this.bean.getBigDecimalProperty(), is(new BigDecimal("20012.56")));
-	}
-
-	@Test
-	public void shouldInjectPeriodValue() {
-		assertThat(this.bean.getPeriodProperty(), is(new Period(0, 12, 22, 0)));
-	}
-
-	@Test
-	public void shouldInjectLocalDateValue() {
-		assertThat(this.bean.getLocalDateProperty(), is(new LocalDate(2009, 06, 12)));
-	}
-
-	@Test
-	public void shouldInjectLocalDateTimeValue() {
-		assertThat(this.bean.getLocalDateTimeProperty(), is(new LocalDateTime(2009, 7, 5, 12, 56, 2)));
-	}
-
-	@Test
-	public void shouldInjectLocalTimeValue() {
-		assertThat(this.bean.getLocalTimeProperty(), is(new LocalTime(12, 22, 45)));
 	}
 
 }
